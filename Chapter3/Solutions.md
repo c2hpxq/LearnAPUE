@@ -32,3 +32,19 @@ read 8 form fd = 20
 
 - sysconf探测到系统fd范围为[0, 12799]
 - dup出来的fd指向file table中同一个entry，故而有相同的current file offset。所以从fd=20会从fd=3上次读剩下的内容开始继续读。
+
+为了验证fd的上限，编写一个测试程序test-max-fd.c：一直open直到遇到错误。测试结果：
+
+```
+error encountered: : Too many open files
+max fd = 12799
+```
+
+验证了从系统中获取的上限。
+
+再查看dup2at12800.c的结果：
+
+> error encountered: : Bad file descriptor
+> -1
+
+可以进一步验证范围为[0,12799]。
