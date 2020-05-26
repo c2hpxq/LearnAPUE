@@ -66,3 +66,9 @@ ex4.13/utimeone.c，思路是先通过lstat读取访问内容/修改内容时间
 # Ex4.14
 
 不了解finger程序。时间的话，猜测是读取mail的stat信息然后计算
+
+# Ex4.15
+
+查看tar的archive格式，只存储了modification time。
+
+查阅相关资料发现：在打包文件时需要读它的内容。所以archive里的文件的access time的一个合理值就是archive的创建时间
