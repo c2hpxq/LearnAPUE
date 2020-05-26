@@ -72,3 +72,18 @@ ex4.13/utimeone.c，思路是先通过lstat读取访问内容/修改内容时间
 查看tar的archive格式，只存储了modification time。
 
 查阅相关资料发现：在打包文件时需要读它的内容。所以archive里的文件的access time的一个合理值就是archive的创建时间
+
+# Ex4.16
+
+测试到的PATH_MAX值为12800。
+
+循环分配的目录最大深度似乎由最大路径长度决定。在我的系统上，这个值大约是4KB（绝对路径的总长度）
+
+# Ex4.17
+
+查看/dev/fd目录的信息：
+
+> $ ls -ld /dev/fd
+> dr-xr-xr-x  1 root  wheel  0 May 24 19:44 /dev/fd
+
+该目录可读，可进入，但是不可写。所以unlink会失败
