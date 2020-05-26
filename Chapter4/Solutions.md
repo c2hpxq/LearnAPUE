@@ -12,3 +12,46 @@ file: regular
 symlink: regular
 ```
 
+# Ex4.2
+
+创建的所有新文件和文件夹的所有权限位都为0
+
+# Ex4.4
+
+creat(path mode)等价于open(path, O_WRONLY|O_CREAT|O_TRUNC, mode)
+
+同名文件已经存在时，creat会截断然后打开文件
+
+# Ex4.5
+
+directory至少包含.、..2项，symlink的内容是路径名，至少有1个字符，所以它们的size都应该大于0
+
+# Ex4.6
+
+思路：
+
+1. 文件长度保持一致，这个通过truncate/ftruncate来达成
+2. 关于hole，每次读入1页大小，如果检查到全0，那么就lseek跳过；否则就写入
+
+# Ex4.7
+
+按题目描述，在创建core和创建core.copy间umask不变。创建core的程序可能不采用默认的umask，所以会导致这种情况
+
+# Ex4.8
+
+du只统计存在文件的大小
+
+df会统计删除但仍然被进程占用的文件的大小
+
+# Ex4.9
+
+inode信息中有一项是指向该inode的hard link数。unlink会减少该计数，故而会修改inode信息，故而会改变file status modification time
+
+# Ex4.10
+
+假设一个opendir占用一个fd，那么打开fd数目的上限会限制ftw程序可探测的目录深度
+
+# Ex4.11
+
+修改后的程序见apue.3e/fieldir/ftw8-4.11.c。时间上差距不大
+
