@@ -48,3 +48,29 @@ max fd = 12799
 > -1
 
 可以进一步验证范围为[0,12799]。
+
+# Ex3.3
+
+fcntl改变已经打开的文件的属性
+
+F_SETFD修改每个fd的status
+
+F_SETFL修改file table entry的status，dup出来的fd和原fd指向的是同一个fte
+
+# Ex3.4
+
+dup2在fd=fd2时直接返回。如果fd=0,1,2，会将dup2的结果close
+
+# Ex3.5
+
+```shell
+./a.out > outfile 2&>1
+```
+
+shell先将1（stdout）重定向到outfile，然后将2（stderr）重定向到1。
+
+```shell
+./a.out 2>&1 > outfile
+```
+
+2先和1都指向terminal，然后把1重定向到outfile。
