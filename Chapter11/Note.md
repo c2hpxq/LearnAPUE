@@ -287,9 +287,11 @@ CV由一个mutex保护
     - 释放mutex
 - pthread_cond_signal：类比从queue中去掉一个元素
   - 保护mutex再次锁上
-  - 现在wait的线程可以行动了，这时候mutex的状态和调用时一样，是lock的
+  - 现在wait的线程可以行动了，这时候mutex的状态和调用时一样，是lock的，所以要注意释放这个mutex
 
 
+
+唤醒所有等待同一个cv的线程：pthread_cond_broadcast
 
 ### Spinlock
 
