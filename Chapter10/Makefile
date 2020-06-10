@@ -11,7 +11,7 @@ ifeq "$(PLATFORM)" "solaris"
   CLD = child
 endif
 
-PROGS =	ex10.12 ex10.11
+PROGS =	ex10.12 ex10.11 ex10.10 ex10.9 ex10.6
 
 all:	$(PROGS) $(MOREPROGS) $(CLD)
 
