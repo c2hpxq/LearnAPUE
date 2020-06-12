@@ -2,23 +2,15 @@ ROOT=../apue.3e
 PLATFORM=$(shell $(ROOT)/systype.sh)
 include $(ROOT)/Make.defines.$(PLATFORM)
 
-CLD =
 
-ifeq "$(PLATFORM)" "linux"
-  CLD = child
-endif
-ifeq "$(PLATFORM)" "solaris"
-  CLD = child
-endif
+PROGS =	ex10.12 ex10.11 ex10.10 ex10.9 ex10.6 ex10.5
 
-PROGS =	ex10.12 ex10.11 ex10.10 ex10.9 ex10.6
-
-all:	$(PROGS) $(MOREPROGS) $(CLD)
+all:	$(PROGS) $(MOREPROGS)
 
 %:	%.c $(LIBAPUE)
 	$(CC) $(CFLAGS) $@.c -o $@ $(LDFLAGS) $(LDLIBS)
 
 clean:
-	rm -f $(PROGS) $(MOREPROGS) $(TEMPFILES) *.o file.hole $(CLD)
+	rm -f $(PROGS) 
 
 include $(ROOT)/Make.libapue.inc
