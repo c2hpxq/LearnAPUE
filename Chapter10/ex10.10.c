@@ -10,6 +10,7 @@ int main() {
             time(&t);
             struct tm *tbreak = localtime(&t);
             printf("tm_sec = %d\n", tbreak->tm_sec);
+            fflush(NULL);
         }
     }
 
